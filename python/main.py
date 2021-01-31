@@ -27,7 +27,17 @@ stabilityHigh = float(0)
 stabilityClose = float(0)
 varianceHigh = float(0)
 varianceClose = float(0)
-stocks = ["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"]
+stocks = ["BTC-USD", "ETH-USD", "LTC", "DOGE-USD"]
+#["SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"]
+#["ALL", "HIG", "LNC", "MET", "PFG", "PGR"]
+#["ETSY", "OSTK", "AMZN", "CHWY", "W", "EBAY", "APRN"]
+#["M", "KSS", "DDS", "CPPRQ", "TGT", "MSLH.L"]
+#["SPOT", "AAPL", "SIRI", "TCEHY", "AMZN", "AMC", "RICK", "GNUS"]
+#["TTWO", "TCEHY", "ATVI", "EA", "NTDOY"]
+#["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
+#["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"]
+#["AXP", "COF", "C", "V", "DFS", "WFC", "PYPL"]
+#["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"]
 
 #Function for seeking trends and exceptions in the data
 def findChanges():
@@ -120,42 +130,6 @@ def printFindings(input, coefficients):
 
         output.writerow([input, coefficients[0][0], coefficients[0][1], coefficients[0][2], coefficients[0][3]])
 
-    # Code below could be used later for very general stats - Printing headers, the csv column headers as labels
-    # for a in range(0, len(headers)):
-    #     print(headers[a], end="           ")
-    # print()
-
-    # print("\nDates with drops 5% or more include...")
-    # for b in range(0, len(largeDrop)):
-    #     index = dates.index(largeDrop[b])
-    #     print(dates[index], end="     ")
-    #     print(opens[index], end="     ")
-    #     print(highs[index], end="     ")
-    #     print(lows[index], end="     ")
-    #     print(closes[index], end="     ")
-    #     print(adj_closes[index], end="     ")
-    #     print(volumes[index], end="     \n")
-    # print("\nDates with gains by 5% or more include...")
-    # for c in range(0, len(largeGain)):
-    #     index = dates.index(largeGain[c])
-    #     print(dates[index], end="     ")
-    #     print(opens[index], end="     ")
-    #     print(highs[index], end="     ")
-    #     print(lows[index], end="     ")
-    #     print(closes[index], end="     ")
-    #     print(adj_closes[index], end="     ")
-    #     print(volumes[index], end="     \n")
-    # print("\nDates with increased trading volume by 40% or more above average...")
-    # for d in range(0, len(highVolumes)):
-    #     index = dates.index(highVolumes[d])
-    #     print(dates[index], end="     ")
-    #     print(opens[index], end="     ")
-    #     print(highs[index], end="     ")
-    #     print(lows[index], end="     ")
-    #     print(closes[index], end="     ")
-    #     print(adj_closes[index], end="     ")
-    #     print(volumes[index], end="     \n")
-
 
 def clearLists():
     #Necessary for appending data for running multiple files
@@ -173,51 +147,6 @@ def clearLists():
     closes.clear()
     adj_closes.clear()
     volumes.clear()
-    
-# def trends(fmtDataArr):
-#     print("\nFinding weekly trends...")
-#
-#     actualChangePercent = 0
-#     weekOpen = 0
-#     avgSum = 0
-#     weeklyChange = 0
-#
-#     for i in range(0,len(fmtDataArr)):
-#         for x in range(0, len(fmtDataArr[i])):
-#             index = dates.index(fmtDataArr[i][x])
-#             if len(fmtDataArr[i]) != 5:
-#                 print("\n***Finished***\n")
-#                 break
-#             elif x == 0:
-#                 index = dates.index(fmtDataArr[i][x])
-#                 avgSum = (opens[index] + closes[index] + highs[index] + lows[index]) / 4
-#                 weekOpen = opens[index]
-#             elif x == 4:
-#                 index = dates.index(fmtDataArr[i][x])
-#                 weeklyChange = ((opens[index] + closes[index] + highs[index] + lows[index]) / 4) - avgSum
-#                 actualChangePercent = weeklyChange / weekOpen
-#                 if actualChangePercent < -0.07:
-#                     decreLargeWeeks.append(dates[index - 4])
-#                 elif actualChangePercent > 0.07:
-#                     increLargeWeeks.append(dates[index - 4])
-#                 elif actualChangePercent < -0.025:
-#                     decreWeeks.append(dates[index - 4])
-#                 elif actualChangePercent > 0.025:
-#                     increWeeks.append(dates[index - 4])
-#
-#     print("Between the dates of " + dates[0] + " - " + dates[len(dates) - 1] + ", the following trends have been parsed ")
-#     print(" * * * * * * * * * * * * \nThis stock decreased by 7.0% in these weeks")
-#     for i in range(0, len(decreLargeWeeks)):
-#         print(" - " + decreLargeWeeks[i])
-#     print(" * * * * * * * * * * * * \nThis stock increased by 7.0% in these weeks")
-#     for i in range(0, len(increLargeWeeks)):
-#         print(" - " + increLargeWeeks[i])
-#     print(" * * * * * * * * * * * * \nThis stock decreased by 2.5% in these weeks")
-#     for i in range(0, len(decreWeeks)):
-#         print(" - " + decreWeeks[i])
-#     print(" * * * * * * * * * * * * \nThis stock increased by 2.5% in these weeks")
-#     for i in range(0, len(increWeeks)):
-#         print(" - " + increWeeks[i])
 
 def turnaround(fmtDataArr):
     print("\nFinding average increasing and decreasing turnaround...\n")
@@ -232,9 +161,9 @@ def turnaround(fmtDataArr):
             if recentLow > lows[q]:
                 recentLow = lows[q]
 
-    if highs[dates.index(fmtDataArr[z][q])] < recentHigh and lows[dates.index(fmtDataArr[z][q])] > recentLow:
+    if highs[dates.index(fmtDataArr[z][q])] < recentHigh:# and lows[dates.index(fmtDataArr[z][q])] > recentLow:
         recentTrend.append("Negative Trajectory")
-    elif highs[dates.index(fmtDataArr[z][q])] > recentHigh and lows[dates.index(fmtDataArr[z][q])] < recentLow:
+    elif highs[dates.index(fmtDataArr[z][q])] > recentHigh:# and lows[dates.index(fmtDataArr[z][q])] < recentLow:
         recentTrend.append("Positive Trajectory")
     else:
         recentTrend.append("Indeterminate")
@@ -322,8 +251,6 @@ def turnaround(fmtDataArr):
             marketTrendAverages[4] += (saveLow / weekInit) * 100
             marketTrendAverages[5] += 1
 
-    #Find averages of from the data Collected
-
 
 def divide_dates(l):
     for i in range(0, len(l), 5):
@@ -344,7 +271,7 @@ def main():
 
         csv_f = csv.reader(f)
 
-    #Saving the data
+    #Saving the data, the program uses the 5 year data rn but can be adjusted to do different lengths or just take smaller lengths of data
         for row in csv_f:
             orig_data.append(row)
 
@@ -354,10 +281,8 @@ def main():
 
         coefficients = list(findChanges())
 
-        # The 5 year data needs separate reaading/writing procedures from the main one for quarterly
         fmtDates = list(divide_dates(dates))
 
-        # trends(fmtDates)
         turnaround(fmtDates)
 
         printFindings(stocks[i], coefficients)
@@ -379,7 +304,7 @@ def main():
     data = {}
     data['stocks'] = []
     data['stocks'].append({
-        'Sector': 'Home and Food Product Brand',
+        'Sector': 'Cryptocurrencies',
         'Stock Names': stocks,
         'Stability Coefficients (highs)': stabilityCoefficientsHigh,
         'Avg Stab. Coefficient (highs)': round(highCoef, 2),
@@ -392,7 +317,7 @@ def main():
         'Recent Trajectories': recentTrend
     })
 
-    with open('data.txt', 'w') as outfile:
+    with open('./jsons/cryptocurrency.txt', 'w') as outfile:
         json.dump(data, outfile)
 
 
