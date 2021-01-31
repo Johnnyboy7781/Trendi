@@ -34,7 +34,7 @@ stocks = [["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"],["BTC-USD", "
             ["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
            ]
 
-#Function for seeking trends and exceptions in the data
+#Function for processing data into stability coefficients
 def findChanges():
     print("\nFinding Changes...\n")
 
@@ -115,6 +115,7 @@ def findChanges():
     yield [stabilityHigh, varianceHigh, stabilityClose, varianceClose]
 
 
+#Writing to a CSV file
 def printFindings(input, coefficients):
     print("Printing Findings...")
 
@@ -125,9 +126,8 @@ def printFindings(input, coefficients):
 
         output.writerow([input, coefficients[0][0], coefficients[0][1], coefficients[0][2], coefficients[0][3]])
 
-
+#Necessary for appending data for running multiple files
 def clearLists():
-    #Necessary for appending data for running multiple files
     highVolumes.clear()
     largeDrop.clear()
     largeGain.clear()
@@ -143,6 +143,7 @@ def clearLists():
     adj_closes.clear()
     volumes.clear()
 
+#Used to identify positive and negative market trends
 def turnaround(fmtDataArr):
     print("\nFinding average increasing and decreasing turnaround...\n")
 
