@@ -27,19 +27,14 @@ stabilityHigh = float(0)
 stabilityClose = float(0)
 varianceHigh = float(0)
 varianceClose = float(0)
-stocks = ["BTC-USD", "ETH-USD", "LTC", "DOGE-USD"]
-#["SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"]
-#["ALL", "HIG", "LNC", "MET", "PFG", "PGR"]
-#["ETSY", "OSTK", "AMZN", "CHWY", "W", "EBAY", "APRN"]
-#["M", "KSS", "DDS", "CPPRQ", "TGT", "MSLH.L"]
-#["SPOT", "AAPL", "SIRI", "TCEHY", "AMZN", "AMC", "RICK", "GNUS"]
-#["TTWO", "TCEHY", "ATVI", "EA", "NTDOY"]
-#["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
-#["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"]
-#["AXP", "COF", "C", "V", "DFS", "WFC", "PYPL"]
-#["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"]
+stocks = [["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"],["BTC-USD", "ETH-USD", "LTC", "DOGE-USD"],
+           ["M", "KSS", "DDS", "CPPRQ", "TGT", "MSLH.L"],["SPOT", "AAPL", "SIRI", "TCEHY", "AMZN", "AMC", "RICK", "GNUS"],
+        ["SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"], ["AXP", "COF", "C", "V", "DFS", "WFC", "PYPL"], ["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"],
+        ["ALL", "HIG", "LNC", "MET", "PFG", "PGR"], ["ETSY", "OSTK", "AMZN", "CHWY", "W", "EBAY", "APRN"], ["TTWO", "TCEHY", "ATVI", "EA", "NTDOY"],
+            ["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
+           ]
 
-#Function for seeking trends and exceptions in the data
+#Function for processing data into stability coefficients
 def findChanges():
     print("\nFinding Changes...\n")
 
@@ -120,6 +115,7 @@ def findChanges():
     yield [stabilityHigh, varianceHigh, stabilityClose, varianceClose]
 
 
+#Writing to a CSV file
 def printFindings(input, coefficients):
     print("Printing Findings...")
 
@@ -130,9 +126,8 @@ def printFindings(input, coefficients):
 
         output.writerow([input, coefficients[0][0], coefficients[0][1], coefficients[0][2], coefficients[0][3]])
 
-
+#Necessary for appending data for running multiple files
 def clearLists():
-    #Necessary for appending data for running multiple files
     highVolumes.clear()
     largeDrop.clear()
     largeGain.clear()
@@ -148,6 +143,7 @@ def clearLists():
     adj_closes.clear()
     volumes.clear()
 
+#Used to identify positive and negative market trends
 def turnaround(fmtDataArr):
     print("\nFinding average increasing and decreasing turnaround...\n")
 
@@ -265,60 +261,69 @@ def main():
             ['Stock', 'Stability Coefficient (high)', 'Variance (high)', 'Stability Coefficient (close)',
              'Variance (close)'])
 
-    #The csv filename is pulled from the list at the top of the script
-    for i in range(0, len(stocks)):
-        f = open('./5yr/' + stocks[i] + ".csv")
+    for category in range(0, 11):
+        # The csv filename is pulled from the list at the top of the script
+        for i in range(0, len(stocks[category])):
+            f = open('./5yr/' + stocks[category][i] + ".csv")
 
-        csv_f = csv.reader(f)
+            csv_f = csv.reader(f)
 
-    #Saving the data, the program uses the 5 year data rn but can be adjusted to do different lengths or just take smaller lengths of data
-        for row in csv_f:
-            orig_data.append(row)
+            # Saving the data, the program uses the 5 year data rn but can be adjusted to do different lengths or just take smaller lengths of data
+            for row in csv_f:
+                orig_data.append(row)
 
-        for x in range(0, 7):
-            headers.append(orig_data[0][x])
-        orig_data.pop(0)
+            for x in range(0, 7):
+                headers.append(orig_data[0][x])
+            orig_data.pop(0)
 
-        coefficients = list(findChanges())
+            coefficients = list(findChanges())
 
-        fmtDates = list(divide_dates(dates))
+            fmtDates = list(divide_dates(dates))
 
-        turnaround(fmtDates)
+            turnaround(fmtDates)
 
-        printFindings(stocks[i], coefficients)
+            printFindings(stocks[category][i], coefficients)
 
-        highCoef = sum(stabilityCoefficientsHigh) / len(stabilityCoefficientsHigh)
-        closeCoef = sum(stabilityCoefficientsClose) / len(stabilityCoefficientsClose)
-        if highCoef > stabilityCoefficientsHigh[i] and closeCoef > stabilityCoefficientsClose[i] :
-            if recentTrend[i] == "Negative Trajectory":
-                recentTrend[i] = "Indeterminate"
-        if highCoef < stabilityCoefficientsHigh[i] and closeCoef < stabilityCoefficientsClose[i] :
-            if recentTrend[i] == "Positive Trajectory":
-                recentTrend[i] = "Indeterminate"
+            highCoef = sum(stabilityCoefficientsHigh) / len(stabilityCoefficientsHigh)
+            closeCoef = sum(stabilityCoefficientsClose) / len(stabilityCoefficientsClose)
+            if highCoef > stabilityCoefficientsHigh[i] and closeCoef > stabilityCoefficientsClose[i]:
+                if recentTrend[i] == "Negative Trajectory":
+                    recentTrend[i] = "Indeterminate"
+            if highCoef < stabilityCoefficientsHigh[i] and closeCoef < stabilityCoefficientsClose[i]:
+                if recentTrend[i] == "Positive Trajectory":
+                    recentTrend[i] = "Indeterminate"
 
-        clearLists()
+            clearLists()
 
-        f.close()
+            f.close()
 
-    #End of for loop - sending JSON
-    data = {}
-    data['stocks'] = []
-    data['stocks'].append({
-        'Sector': 'Cryptocurrencies',
-        'Stock Names': stocks,
-        'Stability Coefficients (highs)': stabilityCoefficientsHigh,
-        'Avg Stab. Coefficient (highs)': round(highCoef, 2),
-        'Stability Coefficients (at close)': stabilityCoefficientsClose,
-        'Avg Stab. Coefficient (at close)': round(closeCoef, 2),
-        'Avg Up Market Length (days)' : round(marketTrendAverages[0]/marketTrendAverages[2], 2),
-        'Avg Up Market Return (%)': round(marketTrendAverages[1] / marketTrendAverages[2], 2),
-        'Avg Down Market Length (days)': round(marketTrendAverages[3] / marketTrendAverages[5], 2),
-        'Avg Down Market Return (%)': round(marketTrendAverages[4] / marketTrendAverages[5], 2),
-        'Recent Trajectories': recentTrend
-    })
+        sectors = ["Automobiles", "Cryptocurrencies", "Department Stores", "Music and Digital Entertainment",
+                   "Exchange-Traded Funds (ETF)", "Banking and Finance", "Home and Food Products", "Insurance",
+                   "Online Retail", "Video Games", "Grocery and Wolesale"]
+        filenames = ["automobiles", "cryptocurrency", "departmentstores", "entertainment", "etf", "finance",
+                     "homegoods", "insurance", "onlineretail", "videogames", "wholesale"]
 
-    with open('./jsons/cryptocurrency.txt', 'w') as outfile:
-        json.dump(data, outfile)
+        # End of for loop - sending JSON
+        data = {}
+        data['stocks'] = []
+        data['stocks'].append({
+            'Sector': sectors[category],
+            'Stock Names': stocks[category],
+            'Stability Coefficients (highs)': stabilityCoefficientsHigh,
+            'Avg Stab. Coefficient (highs)': round(highCoef, 2),
+            'Stability Coefficients (at close)': stabilityCoefficientsClose,
+            'Avg Stab. Coefficient (at close)': round(closeCoef, 2),
+            'Avg Up Market Length (days)': round(marketTrendAverages[0] / marketTrendAverages[2], 2),
+            'Avg Up Market Return (%)': round(marketTrendAverages[1] / marketTrendAverages[2], 2),
+            'Avg Down Market Length (days)': round(marketTrendAverages[3] / marketTrendAverages[5], 2),
+            'Avg Down Market Return (%)': round(marketTrendAverages[4] / marketTrendAverages[5], 2),
+            'Recent Trajectories': recentTrend
+        })
+
+        with open('../src/rawJsons/'+filenames[category]+'.json', 'w') as outfile:
+            json.dump(data, outfile)
+
+
 
 
 
