@@ -1,0 +1,273 @@
+.Data-container {
+  background-color: rgb(202, 207, 236);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 210vh;
+}
+
+.Data-stocks1 {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 5px 5px rgb(209, 208, 208);
+  width: 100vh;
+  height: 80vh;
+  border-radius: 50px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 750vh;
+}
+
+.Data-stocks2 {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 5px 5px rgb(209, 208, 208);
+  width: 100vh;
+  height: 80vh;
+  border-radius: 50px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 750vh;
+}
+
+.Stock-data {
+  height: 12vh;
+  width: 95vh;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 0.5px solid rgb(158, 158, 158);
+  display: flex;
+  flex-direction: row;
+}
+
+.Stock-data-last {
+  height: 12vh;
+  width: 95vh;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+}
+
+body {
+  height: 100vh;
+  padding: 0;
+}
+
+.Stock-data-sq1 {
+  height: 12vh;
+  width: 31.67vh;
+  border-right: 0.5px dotted rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Stock-data-sq2 {
+  height: 12vh;
+  width: 31.67vh;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Stock-data-sq3 {
+  height: 12vh;
+  width: 31.67vh;
+  border-left: 0.5px dotted rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sq3-text {
+  font-size: 25px;
+}
+
+.Stock-name {
+  font-size: 45px;
+}
+
+.sq2-1 {
+  width: 31.67vh;
+  height: 3vh;
+  border-bottom: 0.5px dotted rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sq2-1-text {
+  color: rgb(117, 117, 117);
+}
+
+.sq2-2 {
+  width: 31.67vh;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.sq2-2-container {
+  height: 7vh;
+  width: 15.84vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sq2-2-text {
+  font-size: 45px;
+}
+
+.sq2-3 {
+  width: 31.67vh;
+  height: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sq2-3-container {
+  height: 2vh;
+  width: 15.84vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sq2-3-text {
+  font-size: 10px;
+}
+
+.sq3-container {
+  height: 6vh;
+  width: 31.67vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stocks2-1 {
+  height: 9vh;
+  width: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid rgb(158, 158, 158);
+}
+
+.stocks2-1-text {
+  font-size: 40px;
+  color: rgb(71, 77, 117);
+}
+
+.stocks2-2 {
+  height: 27vh;
+  width: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid rgb(158, 158, 158);
+}
+
+.stocks2-2-text {
+  font-size: 25px;
+  text-indent: 100px;
+  padding: 10px;
+}
+
+.stocks2-3 {
+  height: 18vh;
+  width: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.stocks2-3-1 {
+  height: 18vh;
+  width: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stocks2-3-1-text {
+  color: rgb(71, 77, 117);
+  padding: 5px;
+  font-size: 45px;
+}
+
+.stocks2-4 {
+  height: 18vh;
+  width: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.stocks2_1 {
+  width: 50vh;
+  height: 4.5vh;
+  border-bottom: 0.5px dotted rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stocks_2-1-text {
+  font-size: 25px;
+  color: rgb(117, 117, 117);
+}
+
+.stocks2_2 {
+  width: 50vh;
+  height: 10.5vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.stocks_2-2-text {
+  font-size: 45px;
+}
+
+.stocks_2-2-container {
+  height: 10.5vh;
+  width: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stocks2_3 {
+  width: 50vh;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px dotted rgb(214, 214, 214);
+}
+
+.stocks_2-3-container {
+  font-size: 15px;
+}
+
+.stocks_2-3-container {
+  height: 3vh;
+  width: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

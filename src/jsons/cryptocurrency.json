@@ -1,0 +1,26 @@
+{
+    "stocks": 
+        {
+            "Sector": "Cryptocurrencies", 
+            "Sector Summary": "A cryptocurrency is a digital asset designed to work as a medium of exchange wherein individual coin ownership records are stored in a ledger existing in a form of computerized database using strong cryptography to secure transaction records, to control the creation of additional coins, and to verify the transfer of coin ownership.",
+            "Stock Names": [
+                "BTC-USD", "ETH-USD", "LTC", "DOGE-USD"
+            ], 
+            "Stability Coefficients (highs)": [
+                38.288246037344415, 43.170857631662535, 4.010750490456575, 50.86582341965737
+            ], 
+            "Avg Stab. Coefficient (highs)": 34.08, 
+            "Stability Coefficients (at close)": [
+                37.9931686472961, 42.76907041895735, 4.145973284532765, 41.75990402479391
+            ], 
+            "Avg Stab. Coefficient (at close)": 31.67, 
+            "Avg Up Market Length (days)": 4.2, 
+            "Avg Up Market Return (%)": 133.96, 
+            "Avg Down Market Length (days)": 9.43, 
+            "Avg Down Market Return (%)": 82.36, 
+            "Recent Trajectories": [
+                "Positive", "Indeterminate", "Indeterminate", "Indeterminate"
+            ]
+        }
+    
+}
