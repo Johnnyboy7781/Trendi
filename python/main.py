@@ -18,6 +18,10 @@ lows = []
 closes = []
 adj_closes = []
 volumes = []
+decreWeeks = []
+increWeeks = []
+decreLargeWeeks = []
+increLargeWeeks = []
 stabilityHigh = float(0)
 stabilityClose = float(0)
 varianceHigh = float(0)
@@ -165,6 +169,98 @@ def clearLists():
     closes.clear()
     adj_closes.clear()
     volumes.clear()
+    
+def trends(fmtDataArr):
+    print("\nFinding weekly trends...")
+
+    actualChangePercent = 0
+    weekOpen = 0
+    avgSum = 0
+    weeklyChange = 0
+
+    for i in range(0,len(fmtDataArr)):
+        for x in range(0, len(fmtDataArr[i])):
+            index = dates.index(fmtDataArr[i][x])
+            if len(fmtDataArr[i]) != 5:
+                print("\n***Finished***\n")
+                break
+            elif x == 0:
+                index = dates.index(fmtDataArr[i][x])
+                avgSum = (opens[index] + closes[index] + highs[index] + lows[index]) / 4
+                weekOpen = opens[index]
+            elif x == 4:
+                index = dates.index(fmtDataArr[i][x])
+                weeklyChange = ((opens[index] + closes[index] + highs[index] + lows[index]) / 4) - avgSum
+                actualChangePercent = weeklyChange / weekOpen
+                if actualChangePercent < -0.07:
+                    decreLargeWeeks.append(dates[index - 4])
+                elif actualChangePercent > 0.07:
+                    increLargeWeeks.append(dates[index - 4])
+                elif actualChangePercent < -0.025:
+                    decreWeeks.append(dates[index - 4])
+                elif actualChangePercent > 0.025:
+                    increWeeks.append(dates[index - 4])
+
+    print("Between the dates of " + dates[0] + " - " + dates[len(dates) - 1] + ", the following trends have been parsed ")
+    print(" * * * * * * * * * * * * \nThis stock decreased by 7.0% in these weeks")
+    for i in range(0, len(decreLargeWeeks)): 
+        print(" - " + decreLargeWeeks[i])
+    print(" * * * * * * * * * * * * \nThis stock increased by 7.0% in these weeks")
+    for i in range(0, len(increLargeWeeks)):
+        print(" - " + increLargeWeeks[i])
+    print(" * * * * * * * * * * * * \nThis stock decreased by 2.5% in these weeks")
+    for i in range(0, len(decreWeeks)): 
+        print(" - " + decreWeeks[i])
+    print(" * * * * * * * * * * * * \nThis stock increased by 2.5% in these weeks")
+    for i in range(0, len(increWeeks)):
+        print(" - " + increWeeks[i])
+
+def turnaround(decreArr, increArr, fmtDataArr):
+    print("\nFinding average increasing and decreasing turnaround...\n")
+
+    decreWeeks = 0
+    decreTimes = 0
+    increWeeks = 0
+    increTimes = 0
+    dIndex = 0
+    iIndex = 0
+
+    for i in range(0, len(fmtDataArr)):
+        if 0 <= dIndex < len(decreArr) and decreArr[dIndex] == fmtDataArr[i][0]:
+            if increWeeks > 0 and increTimes > 1:
+                print("This stock has increased without substantialy decresing for " + str(increWeeks) + " weeks")
+                startIndex = dates.index(increArr[iIndex - increTimes])
+                endIndex = dates.index(increArr[iIndex - 1])
+                percentChange = ((closes[endIndex] - closes[startIndex]) / closes[startIndex]) * 100
+                print("start: " + dates[startIndex] + ", end: " + dates[end])
+                print("It has increased by " + str(round(percentChange, 2)) + "% in that time")
+                increWeeks = 0
+                increTimes = 0
+            decreTimes += 1
+            decreWeeks += 1
+            dIndex += 1
+        elif 0 <= iIndex < len(increArr) and increArr[iIndex] == fmtDataArr[i][0]:
+            if decreWeeks > 0 and decreTimes > 1:
+                print("This stock has decreased without substantially increasing for " + str(decreWeeks) + " weeks")
+                index = decreArr.index(decreArr[iIndex - 1])
+                percentChange = ((closes[index] - closes[index - decreWeeks]) / closes[index - decreWeeks]) * 100
+                print("It has decreased by " + str(round(percentChange, 2)) + "% in that time")
+                decreWeeks = 0
+                decreTimes = 0
+            increTimes += 1
+            increWeeks += 1
+            iIndex += 1
+        else :
+            if decreWeeks > 0 :
+                decreWeeks += 1
+            elif increWeeks > 0 :
+                increWeeks += 1
+
+
+
+def divide_dates(l):
+    for i in range(0, len(l), 5):
+        yield l[i:i +5]
 
 def main():
     #Print Headers for flagged data outputs
@@ -192,6 +288,14 @@ def main():
         coefficients = list(findChanges())
 
         printFindings(stocks[i], coefficients)
+        
+        fmtDates = list(divide_dates(dates))
+
+        trends(fmtDates)
+
+        turnaround(decreWeeks, increWeeks, fmtDates)
+
+        f.close()
 
         clearLists()
 
