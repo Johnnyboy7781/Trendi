@@ -1,5 +1,5 @@
 # Welcome to trendi!
-See react documentation and resources listed below
+See react documentation and resources listed below - we used npm start to launch the project locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
