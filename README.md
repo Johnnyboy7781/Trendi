@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Welcome to trendi!
+See react documentation and resources listed below
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -39,32 +40,12 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Resources
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Alpaca Stock API - https://alpaca.markets/docs/api-documentation/how-to/market-data/?fbclid=IwAR13kmNBKZUwpL6DV97WkgrSG3QuGV7sY7TPR8OskSzUb6wKojxw28ST2es 
+- Yahoo Finance with CSV - https://finance.yahoo.com/quote/JNJ/history?p=JNJ 
+- Coef. of Variation - https://www.investopedia.com/ask/answers/031715/what-can-coefficient-variation-cov-tell-investors-about-investments-volatility.asp 
+- Standard Deviation - “One would have to divide the standard deviation by the closing price to directly compare volatility for the two securities.” - https://school.stockcharts.com/doku.php?id=technical_indicators:standard_deviation_volatility 
+- Bollinger Bands - https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/bollinger-bands#:~:text=Bollinger%20Bands%20are%20envelopes%20plotted,Period%20and%20Standard%20Deviations%2C%20StdDev. 
+- Bull/Bear Markets - https://www.investopedia.com/terms/t/trending-market.asp#:~:text=A%20price%20series%20that%20continues,tends%20to%20close%20periodically%20higher. 
+- Std Deviation and Volatility def - https://www.investopedia.com/terms/v/volatility.asp 
