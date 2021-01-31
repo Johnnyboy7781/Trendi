@@ -1,0 +1,26 @@
+{
+    "stocks": 
+        {
+            "Sector": "Exchange-Traded Funds (ETF)", 
+            "Sector Summary": "A sector exchange-traded fund (ETF) invests in the stocks and securities of a specific industry or sector, typically identified in the fund title.",
+            "Stock Names": [
+                "SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"
+            ], 
+            "Stability Coefficients (highs)": [
+                4.682379237313709, 4.970343967326619, 5.490979146578234, 3.763302041575136, 5.692032740117211, 20.085345749453555
+            ], 
+            "Avg Stab. Coefficient (highs)": 7.45, 
+            "Stability Coefficients (at close)": [
+                4.693957221803936, 5.021102460109356, 5.474849004283647, 3.7870407610385866, 5.673282694288449, 19.94622977465257
+            ], 
+            "Avg Stab. Coefficient (at close)": 7.43, 
+            "Avg Up Market Length (days)": 48.79, 
+            "Avg Up Market Return (%)": 130.61, 
+            "Avg Down Market Length (days)": 52.48, 
+            "Avg Down Market Return (%)": 93.66, 
+            "Recent Trajectories": [
+                "Positive", "Indeterminate", "Indeterminate", "Positive", "Indeterminate", "Indeterminate"
+            ]
+        }
+    
+}

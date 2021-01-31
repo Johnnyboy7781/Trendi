@@ -1,0 +1,26 @@
+{
+    "stocks": 
+        {
+            "Sector": "Insurance", 
+            "Sector Summary": "The insurance sector is made up of companies that offer risk management in the form of insurance contracts.",
+            "Stock Names": [
+                "ALL", "HIG", "LNC", "MET", "PFG", "PGR"
+            ], 
+            "Stability Coefficients (highs)": [
+                5.446131787307871, 4.751077170549647, 8.476970488850078, 4.252645695604862, 6.312250680676885, 11.722765956872164
+            ], 
+            "Avg Stab. Coefficient (highs)": 6.83, 
+            "Stability Coefficients (at close)": [
+                5.421761609345044, 4.868310818156703, 8.62183153761809, 4.371581202688991, 6.425205196576862, 11.665124893702863
+            ], 
+            "Avg Stab. Coefficient (at close)": 6.9, 
+            "Avg Up Market Length (days)": 14.79, 
+            "Avg Up Market Return (%)": 127.39, 
+            "Avg Down Market Length (days)": 86.96, 
+            "Avg Down Market Return (%)": 84.36, 
+            "Recent Trajectories": [
+                "Positive", "Positive", "Indeterminate", "Positive", "Indeterminate", "Indeterminate"
+            ]
+        }
+    
+}
