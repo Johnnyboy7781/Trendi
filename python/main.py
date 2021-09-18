@@ -30,25 +30,25 @@ stabilityHigh = float(0)
 stabilityClose = float(0)
 varianceHigh = float(0)
 varianceClose = float(0)
-stocks = [["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"],["BTC-USD", "ETH-USD", "LTC", "DOGE-USD"],
-           ["M", "KSS", "DDS", "CPPRQ", "TGT", "MSLH.L"],["SPOT", "AAPL", "SIRI", "TCEHY", "AMZN", "AMC", "RICK", "GNUS"],
-        ["SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"], ["AXP", "COF", "C", "V", "DFS", "WFC", "PYPL"], ["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"],
-        ["ALL", "HIG", "LNC", "MET", "PFG", "PGR"], ["ETSY", "OSTK", "AMZN", "CHWY", "W", "EBAY", "APRN"], ["TTWO", "TCEHY", "ATVI", "EA", "NTDOY"],
-            ["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
-           ]
+#stocks = [["F", "TM", "GM", "HMC", "TSLA", "NIO", "RACE", "VWAGY"],["BTC-USD", "ETH-USD", "LTC", "DOGE-USD"],
+ #          ["M", "KSS", "DDS", "CPPRQ", "TGT", "MSLH.L"],["SPOT", "AAPL", "SIRI", "TCEHY", "AMZN", "AMC", "RICK", "GNUS"],
+  #      ["SCHM", "EES", "IYH", "VWO", "SPY", "ARKK"], ["AXP", "COF", "C", "V", "DFS", "WFC", "PYPL"], ["JNJ", "KO", "PG", "CLX", "CPB", "GIS", "CL"],
+   #     ["ALL", "HIG", "LNC", "MET", "PFG", "PGR"], ["ETSY", "OSTK", "AMZN", "CHWY", "W", "EBAY", "APRN"], ["TTWO", "TCEHY", "ATVI", "EA", "NTDOY"],
+    #        ["AMZN", "WMT", "TGT", "COST", "BJ", "KR"]
+     #      ]
 
 #Function for processing data into stability coefficients
 def findChanges():
     #print("\nFinding Changes...\n")
 
     for entry in orig_data: #orig_data is the data provided by the excel spreadsheets (raw from yahoo), each entry is a day which has each of the metrics listed below provided at the start
-        dates.append(entry[0])
-        opens.append(float(entry[1]))
-        highs.append(float(entry[2]))
-        lows.append(float(entry[3]))
-        closes.append(float(entry[4]))
-        adj_closes.append(float(entry[5]))
-        volumes.append(float(entry[6]))
+        dates.append(entry[1])
+        opens.append(float(entry[2]))
+        highs.append(float(entry[3]))
+        lows.append(float(entry[4]))
+        closes.append(float(entry[5]))
+        adj_closes.append(float(entry[6]))
+        volumes.append(float(entry[7]))
 
     for i in range(0, 6): #Start each value in (see variable descriptions above) as 0
         sumCollection.append(float(0))
@@ -125,7 +125,7 @@ def printFindings(input, coefficients):
 
 
     #Appends the stability and variance for a stock to the output file
-    with open('./csvData/output.csv', mode='a') as output:
+    with open('output.csv', mode='a') as output:
         output = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         output.writerow([input, coefficients[0][0], coefficients[0][1], coefficients[0][2], coefficients[0][3]])
@@ -160,7 +160,6 @@ def turnaround(fmtDataArr):
             if recentHigh < highs[q]:
                 recentHigh = highs[q]
             if recentLow > lows[q]:
-                print("teehee")
                 recentLow = lows[q]
 
     if highs[dates.index(fmtDataArr[z][q])] < recentHigh:# and lows[dates.index(fmtDataArr[z][q])] > recentLow:
@@ -260,17 +259,64 @@ def divide_dates(l):
 
 def main():
     #Print Headers for flagged data outputs
-    with open('./csvData/output.csv', mode='w') as hdr:
+    with open('output.csv', mode='w') as hdr:
         hdr = csv.writer(hdr, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         hdr.writerow( #Labels for columns in output.csv
             ['Stock', 'Stability Coefficient (high)', 'Variance (high)', 'Stability Coefficient (close)',
              'Variance (close)'])
 
-    for category in range(0, 11): #This loop runs through each stock category, a category being a grouping of stocks based on market sector (see in sock list at top off file)
+    #Identifying Stock Categories/Sectors
+    #f = open('../../s-and-p-500-companies/data/constituents.csv')
+    #csv_f = csv.reader(f)
+
+
+    #---New Sectors (S&P) and filenames Listed Below---
+    sectors = ["Industrials", "Health Care", "Information Technology", "Communication Services",
+        "Consumer Staples", "Consumer Discretionary", "Utilities", "Financials",
+        "Materials", "Real Estate", "Energy"]
+    filenames = ["industrials", "healthcare", "informationtechnology", "communicationservices",
+        "consumerstaples", "consumerdiscretionary", "utilities", "financials",
+        "materials", "realestate", "energy"]
+
+    f = open('python\constituents.csv', 'r')
+    csv_f = csv.reader(f)
+
+    stocks = [[]] * 11
+    #for all the rows in the constituents csv file
+    for row in csv_f:
+    #switch statement for putting the stock into the correct category based on sectors[]
+        if (row[2] == "Industrials"):
+            stocks[0].append(row[0])
+        elif (row[2] == "Health Care"):
+            stocks[1].append(row[0])
+        elif (row[2] == "Information Technology"):
+            stocks[2].append(row[0])
+        elif (row[2] == "Communication Services"):
+            stocks[3].append(row[0])
+        elif (row[2] == "Consumer Staples"):
+            stocks[4].append(row[0])
+        elif (row[2] == "Consumer Discretionary"):
+            stocks[5].append(row[0])
+        elif (row[2] == "Utilities"):
+            stocks[6].append(row[0])
+        elif (row[2] == "Financials"):
+            stocks[7].append(row[0])
+        elif (row[2] == "Materials"):
+            stocks[8].append(row[0])
+        elif (row[2] == "Real Estate"):
+            stocks[9].append(row[0])
+        elif (row[2] == "Energy"):
+            stocks[10].append(row[0])
+
+    f.close()
+
+
+
+    for category in range(0, 10): #This loop runs through each stock category, a category being a grouping of stocks based on market sector (see in sock list at top off file)
         # The csv filename is pulled from the list at the top of the script
         for i in range(0, len(stocks[category])): #THIS IS THE FOR LOOP WHICH RUNS THROUGH INDIVIDUAL STOCKS ~~~ 1 iteration of this equals one stock's data processed and added to the output
-            f = open('./5yr/' + stocks[category][i] + ".csv")
+            f = open('python/csvData/' + stocks[category][i] + ".csv")
 
 
             csv_f = csv.reader(f)
@@ -304,12 +350,6 @@ def main():
 
             f.close()
 
-        sectors = ["Automobiles", "Cryptocurrencies", "Department Stores", "Music and Digital Entertainment",
-                   "Exchange-Traded Funds (ETF)", "Banking and Finance", "Home and Food Products", "Insurance",
-                   "Online Retail", "Video Games", "Grocery and Wolesale"]
-        filenames = ["automobiles", "cryptocurrency", "departmentstores", "entertainment", "etf", "finance",
-                     "homegoods", "insurance", "onlineretail", "videogames", "wholesale"]
-
         # End of for loop - sending JSON
         data = {}
         data['stocks'] = []
@@ -327,7 +367,7 @@ def main():
             'Recent Trajectories': recentTrend
         })
 
-        with open('../src/rawJsons/'+filenames[category]+'.json', 'w') as outfile: #Written out to the respective json file by the stock's name within /rawJsons
+        with open('src/rawJsons/'+filenames[category]+'.json', 'w') as outfile: #Written out to the respective json file by the stock's name within /rawJsons
             json.dump(data, outfile)
 
         print("Done!")
