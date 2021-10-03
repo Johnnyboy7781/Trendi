@@ -2,17 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import '../App.css';
 
-import autoData from '../jsons/automobiles.json';
-import cryptoData from '../jsons/cryptocurrency.json';
-import departmentData from '../jsons/departmentstore.json';
-import entertainData from '../jsons/entertainment.json';
-import etfData from '../jsons/etf.json';
-import financeData from '../jsons/finance.json';
-import homegoodData from '../jsons/homegoods.json';
-import insuranceData from '../jsons/insurance.json';
-import onlineData from '../jsons/onlineretail.json';
-import gameData from '../jsons/videogames.json';
-import wholesaleData from '../jsons/wholesale.json';
+import indusData from '../jsons/industrials.json';
+import healthData from '../jsons/healthcare.json';
+import infotechData from '../jsons/informationtechnology.json';
+import commservData from '../jsons/communicationservices.json';
+import constapData from '../jsons/consumerstaples.json';
+import consdisData from '../jsons/consumerdiscretionary.json';
+import utilitiesData from '../jsons/utilities.json';
+import financialsData from '../jsons/financials.json';
+import materialsData from '../jsons/materials.json';
+import realestData from '../jsons/realestate.json';
+import evergyData from '../jsons/energy.json';
 
 export default function Home() {
 
@@ -25,38 +25,38 @@ export default function Home() {
                 <view className='container'>
                     <view className='App-watchlist-backing' />
                     <view className='Button-container'>
-                        <Link to={{pathname: './StockData', state: {data: financeData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>FINANCE</text>
+                        <Link to={{pathname: './StockData', state: {data: indusData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>INDUSTRIALS</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: autoData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>AUTO</text>
+                        <Link to={{pathname: './StockData', state: {data: healthData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>HEALTHCARE</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: homegoodData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>HOMEGOODS</text>
+                        <Link to={{pathname: './StockData', state: {data: evergyData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>ENERGY</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: wholesaleData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>GROCERY & WHOLESALE</text>
+                        <Link to={{pathname: './StockData', state: {data: realestData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>REAL ESTATE</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: gameData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>VIDEO GAMES</text>
+                        <Link to={{pathname: './StockData', state: {data: materialsData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>MATERIALS</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: entertainData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>ENTERTAINMENT</text>
+                        <Link to={{pathname: './StockData', state: {data: financialsData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>FINANCIALS</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: departmentData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>DEPARTMENT/CLOTHING STORE</text>
+                        <Link to={{pathname: './StockData', state: {data: utilitiesData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>UTILITIES</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: onlineData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>ONLINE SHOPPING</text>
+                        <Link to={{pathname: './StockData', state: {data: consdisData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>CONSUMER DISCRETIONARY</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: insuranceData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>INSURANCE</text>
+                        <Link to={{pathname: './StockData', state: {data: constapData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>CONSUMER STAPLES</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: etfData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>ETF</text>
+                        <Link to={{pathname: './StockData', state: {data: commservData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>COMMUNICATIONS SERVICE</text>
                         </Link>
-                        <Link to={{pathname: './StockData', state: {data: cryptoData}}} className='App-watchlist-item'>
-                            <text className='App-watchlist-item-text'>CRYPTOCURRENCY</text>
+                        <Link to={{pathname: './StockData', state: {data: infotechData}}} className='App-watchlist-item'>
+                            <text className='App-watchlist-item-text'>INFORMATION TECHNOLOGY</text>
                         </Link>
                     </view>
                 </view>

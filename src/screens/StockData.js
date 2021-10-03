@@ -7,6 +7,7 @@ export default class StockData extends React.Component {
     render() {
 
         const data = this.props.location.state;
+        console.log("Check it out: ", data.data.stocks)
 
         return (
             <div className='App-container'>
@@ -19,13 +20,13 @@ export default class StockData extends React.Component {
                     <view className='Data-stocks1'>
                         <view className='Stock-data'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][0] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][0] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][0]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][0] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][0] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]['Stock Names'][0]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][0]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][0]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][0]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][0]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -34,18 +35,18 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][0] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][0] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][0]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][0] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][0] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][0]}</text></view>
                             </view>
                         </view>
                         <view className='Stock-data'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][1] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][1] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][1]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][1] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][1] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]['Stock Names'][1]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][1]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][1]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][1]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][1]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -54,18 +55,19 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][1] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][1] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][1]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][1] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][1] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][1]}</text></view>
                             </view>
                         </view>
                         <view className='Stock-data'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][2] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][2] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][2]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][2] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][2] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]
+                                ['Stock Names'][2]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][2]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][2]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][2]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][2]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -74,18 +76,18 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][2] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][2] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][2]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][2] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][2] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][2]}</text></view>
                             </view>
                         </view>
                         <view className='Stock-data'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][3] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][3] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][3]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][3] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][3] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]['Stock Names'][3]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][3]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][3]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][3]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][3]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -94,18 +96,18 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][3] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][3] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][3]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][3] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][3] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][3]}</text></view>
                             </view>
                         </view>
                         <view className='Stock-data'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][4] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][4] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][4]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][4] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][4] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]['Stock Names'][4]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][4]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][4]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][4]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][4]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -114,18 +116,18 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][4] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][4] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][4]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][4] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][4] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][4]}</text></view>
                             </view>
                         </view>
                         <view className='Stock-data-last'>
                             <view className='Stock-data-sq1'>
-                                <text style={{fontSize: 45, color: data.data.stocks["Recent Trajectories"][5] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][5] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks['Stock Names'][5]}</text>
+                                <text style={{fontSize: 45, color: data.data.stocks[0]["Recent Trajectories"][5] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][5] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]['Stock Names'][5]}</text>
                             </view>
                             <view className='Stock-data-sq2'>
                                 <view className='sq2-1'><text className='sq2-1-text'>Stability coefficient:</text></view>
                                 <view className='sq2-2'>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (highs)"][5]).toFixed(1)}</text></view>
-                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks["Stability Coefficients (at close)"][5]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (highs)"][5]).toFixed(1)}</text></view>
+                                    <view className='sq2-2-container'><text className='sq2-2-text'>{Number.parseFloat(data.data.stocks[0]["Stability Coefficients (at close)"][5]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='sq2-3'>
                                     <view className='sq2-3-container'><text className='sq2-3-text'>(high)</text></view>
@@ -134,7 +136,7 @@ export default class StockData extends React.Component {
                             </view>
                             <view className='Stock-data-sq3'>
                                 <view className='sq3-container'><text className='sq3-text'>Trajectory:</text></view>
-                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks["Recent Trajectories"][5] === 'Positive' ? 'green' : data.data.stocks["Recent Trajectories"][5] === 'Negative' ? 'red' : 'black'}}>{data.data.stocks["Recent Trajectories"][5]}</text></view>
+                                <view className='sq3-container'><text style={{fontSize: 25, color: data.data.stocks[0]["Recent Trajectories"][5] === 'Positive Trajectory' ? 'green' : data.data.stocks[0]["Recent Trajectories"][5] === 'Negative Trajectory' ? 'red' : 'black'}}>{data.data.stocks[0]["Recent Trajectories"][5]}</text></view>
                             </view>
                         </view>
                     </view>
@@ -142,18 +144,18 @@ export default class StockData extends React.Component {
                     { /* Right side view */ }
                     <view className='Data-stocks2'>
                         <view className='stocks2-1'>
-                            <text className='stocks2-1-text'>Sector: {data.data.stocks["Sector"]}</text>
+                            <text className='stocks2-1-text'>Sector: {data.data.stocks[0]["Sector"]}</text>
                         </view>
                         <view className='stocks2-2'>
-                            <text className='stocks2-2-text'>{data.data.stocks["Sector Summary"]}</text>
+                            <text className='stocks2-2-text'>{data.data.stocks[0]["Sector Summary"]}</text>
                         </view>
                         <view className='stocks2-3'>
                             <view className='stocks2-3-1'><text className='stocks2-3-1-text'>Market insights: </text></view>
                             <view>
                                 <view className='stocks2_1'><text className='stocks_2-1-text'>Avg Stability Coef:</text></view>
                                 <view className='stocks2_2'>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Stab. Coefficient (highs)"]).toFixed(1)}</text></view>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Stab. Coefficient (at close)"]).toFixed(1)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Stab. Coefficient (highs)"]).toFixed(1)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Stab. Coefficient (at close)"]).toFixed(1)}</text></view>
                                 </view>
                                 <view className='stocks2_3'>
                                     <view className='stocks_2-3-container'><text className='stocks_2-3-text'>(high)</text></view>
@@ -165,8 +167,8 @@ export default class StockData extends React.Component {
                         <view>
                                 <view className='stocks2_1'><text className='stocks_2-1-text'>Avg Up Market:</text></view>
                                 <view className='stocks2_2'>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Up Market Length (days)"]).toFixed(0)}</text></view>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Up Market Return (%)"]).toFixed(2)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Up Market Length (days)"]).toFixed(0)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Up Market Return (%)"]).toFixed(2)}</text></view>
                                 </view>
                                 <view className='stocks2_3'>
                                     <view className='stocks_2-3-container'><text className='stocks_2-3-text'>Length (d)</text></view>
@@ -176,8 +178,8 @@ export default class StockData extends React.Component {
                             <view>
                                 <view className='stocks2_1'><text className='stocks_2-1-text'>Avg Down Market:</text></view>
                                 <view className='stocks2_2'>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Down Market Length (days)"]).toFixed(0)}</text></view>
-                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks["Avg Down Market Return (%)"]).toFixed(2)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Down Market Length (days)"]).toFixed(0)}</text></view>
+                                    <view className='stocks_2-2-container'><text className='stocks_2-2-text'>{Number.parseFloat(data.data.stocks[0]["Avg Down Market Return (%)"]).toFixed(2)}</text></view>
                                 </view>
                                 <view className='stocks2_3'>
                                     <view className='stocks_2-3-container'><text className='stocks_2-3-text'>Length (d)</text></view>

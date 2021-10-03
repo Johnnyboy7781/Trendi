@@ -1,6 +1,7 @@
 import csv
 import math
 import json
+import time
 
 print("Welcome to the Trendi Algorithm! Below, csv values will be stored and processed.")
 
@@ -40,6 +41,7 @@ varianceClose = float(0)
 #Function for processing data into stability coefficients
 def findChanges():
     #print("\nFinding Changes...\n")
+
 
     for entry in orig_data: #orig_data is the data provided by the excel spreadsheets (raw from yahoo), each entry is a day which has each of the metrics listed below provided at the start
         dates.append(entry[1])
@@ -275,6 +277,9 @@ def main():
     sectors = ["Industrials", "Health Care", "Information Technology", "Communication Services",
         "Consumer Staples", "Consumer Discretionary", "Utilities", "Financials",
         "Materials", "Real Estate", "Energy"]
+    sectorCaptions = ["blah blah Industrials", "blah blah Health Care", "blah blah Information Technology", "blah blah Communication Services",
+        "blah blah Consumer Staples", "blah blah Consumer Discretionary", "blah blah Utilities", "blah blah Financials",
+        "blah blah Materials", "blah blah Real Estate", "blah blah Energy"]
     filenames = ["industrials", "healthcare", "informationtechnology", "communicationservices",
         "consumerstaples", "consumerdiscretionary", "utilities", "financials",
         "materials", "realestate", "energy"]
@@ -282,7 +287,7 @@ def main():
     f = open('python\constituents.csv', 'r')
     csv_f = csv.reader(f)
 
-    stocks = [[]] * 11
+    stocks = [[],[],[],[],[],[],[],[],[],[],[]]
     #for all the rows in the constituents csv file
     for row in csv_f:
     #switch statement for putting the stock into the correct category based on sectors[]
@@ -312,12 +317,16 @@ def main():
     f.close()
 
 
+    for category in range(0, 11): #This loop runs through each stock category, a category being a grouping of stocks based on market sector (see in sock list at top off file)
+        #Resetting the global arrays for the next category
+        recentTrend.clear()
+        stabilityCoefficientsHigh.clear()
+        stabilityCoefficientsClose.clear()
 
-    for category in range(0, 10): #This loop runs through each stock category, a category being a grouping of stocks based on market sector (see in sock list at top off file)
+
         # The csv filename is pulled from the list at the top of the script
         for i in range(0, len(stocks[category])): #THIS IS THE FOR LOOP WHICH RUNS THROUGH INDIVIDUAL STOCKS ~~~ 1 iteration of this equals one stock's data processed and added to the output
             f = open('python/csvData/' + stocks[category][i] + ".csv")
-
 
             csv_f = csv.reader(f)
 
@@ -337,24 +346,29 @@ def main():
 
             printFindings(stocks[category][i], coefficients)
 
-            highCoef = sum(stabilityCoefficientsHigh) / len(stabilityCoefficientsHigh)
-            closeCoef = sum(stabilityCoefficientsClose) / len(stabilityCoefficientsClose)
-            if highCoef > stabilityCoefficientsHigh[i] and closeCoef > stabilityCoefficientsClose[i]:
-                if recentTrend[i] == "Negative Trajectory":
-                    recentTrend[i] = "Indeterminate"
-            if highCoef < stabilityCoefficientsHigh[i] and closeCoef < stabilityCoefficientsClose[i]:
-                if recentTrend[i] == "Positive Trajectory":
-                    recentTrend[i] = "Indeterminate"
-
             clearLists()
 
             f.close()
+        
+        for j in range(0, len(stocks[category])):
+
+            highCoef = sum(stabilityCoefficientsHigh) / len(stabilityCoefficientsHigh)
+            closeCoef = sum(stabilityCoefficientsClose) / len(stabilityCoefficientsClose)
+            if highCoef > stabilityCoefficientsHigh[j] and closeCoef > stabilityCoefficientsClose[j]:
+                if recentTrend[i] == "Negative Trajectory":
+                    recentTrend[i] = "Indeterminate"
+            if highCoef < stabilityCoefficientsHigh[j] and closeCoef < stabilityCoefficientsClose[j]:
+                if recentTrend[i] == "Positive Trajectory":
+                    recentTrend[i] = "Indeterminate"
+
+
 
         # End of for loop - sending JSON
         data = {}
         data['stocks'] = []
         data['stocks'].append({
             'Sector': sectors[category],
+            'Sector Summary': sectorCaptions[category],
             'Stock Names': stocks[category],
             'Stability Coefficients (highs)': stabilityCoefficientsHigh,
             'Avg Stab. Coefficient (highs)': round(highCoef, 2),
@@ -367,7 +381,9 @@ def main():
             'Recent Trajectories': recentTrend
         })
 
-        with open('src/rawJsons/'+filenames[category]+'.json', 'w') as outfile: #Written out to the respective json file by the stock's name within /rawJsons
+        with open('src/jsons/'+filenames[category]+'.json', 'w') as outfile: #Written out to the respective json file by the stock's name within /rawJsons
+            #PrettyJson = json.dumps(data)#, separators=(',', ': '), sort_keys=False)
+            #print(data)
             json.dump(data, outfile)
 
         print("Done!")
